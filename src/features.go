@@ -1,4 +1,4 @@
-package tui
+package src
 
 // Feature defines a toggleable feature with its state and action.
 type Feature struct {

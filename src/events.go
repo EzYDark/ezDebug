@@ -1,4 +1,4 @@
-package tui
+package src
 
 import (
 	"github.com/gdamore/tcell/v2"

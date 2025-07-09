@@ -1,4 +1,4 @@
-package tui
+package src
 
 import (
 	"io"
@@ -36,7 +36,7 @@ func (a *DebugTUI) GetLogWriter() io.Writer {
 	return tview.ANSIWriter(a.LogView)
 }
 
-// Start starts the TUI application.
+// Start starts the TUI application. (Blocking call)
 func (a *DebugTUI) Start() error {
 	ui := InitUI(a)
 	return ui.Run()
