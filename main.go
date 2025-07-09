@@ -2,10 +2,18 @@ package main
 
 import (
 	"flag"
+	"io"
 
 	"github.com/ezydark/ezDebugTUI/src"
+	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
+
+// InitLogger configures zerolog to write to the TUI's log view.
+func InitLogger(writer io.Writer) {
+	// Send logs to the provided writer (the TUI log panel).
+	log.Logger = zerolog.New(writer).With().Timestamp().Logger()
+}
 
 func main() {
 	exampleFlag := flag.Bool("example", false, "Show example of ezDebugTUI usage")
@@ -13,7 +21,10 @@ func main() {
 
 	if *exampleFlag {
 		app := src.InitDebugTUI()
-		// InitLogger(app.GetLogWriter())
+
+		// Have to set the Writer for the logger
+		// otherwise the UI glitches when redrawing
+		InitLogger(app.GetLogWriter())
 
 		log.Info().Msg("Starting example of ezDebugTUI usage...")
 
