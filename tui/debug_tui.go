@@ -1,4 +1,4 @@
-package src
+package tui
 
 import (
 	"io"
@@ -12,8 +12,8 @@ type DebugTUI struct {
 	LogView *tview.TextView
 }
 
-// InitDebugTUI creates a new TUI application.
-func InitDebugTUI() *DebugTUI {
+// Init creates a new TUI application.
+func Init() *DebugTUI {
 	app := tview.NewApplication()
 	logView := tview.NewTextView().
 		SetDynamicColors(true).
