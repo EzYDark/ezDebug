@@ -18,10 +18,12 @@ func Init() *DebugTUI {
 	logView := tview.NewTextView().
 		SetDynamicColors(true).
 		SetRegions(true).
-		SetWordWrap(true).
-		SetChangedFunc(func() {
-			app.Draw()
-		})
+		SetWordWrap(true)
+
+	logView.SetChangedFunc(func() {
+		logView.ScrollToEnd()
+		app.Draw()
+	})
 
 	logView.SetBorder(true).SetTitle("Logs")
 
