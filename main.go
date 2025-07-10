@@ -15,16 +15,12 @@ func main() {
 	exampleFlag := flag.Bool("example", false, "Show example of ezDebugTUI usage")
 	flag.Parse()
 
-	// Initialize the global logger with custom
-	// zerolog configuration
-	ezLog.Init()
-
 	if *exampleFlag {
 		debugTUI := tui.Init()
 
 		// Have to reinitialize the global logger with the TUI's Writer
 		// otherwise the UI glitches when redrawing
-		ezLog.InitWithWriter(debugTUI.GetLogWriter())
+		ezLog.New().WithWriter(debugTUI.GetLogWriter()).WithTviewCompat().Build()
 
 		log.Info().Msg("Starting example of ezDebugTUI usage...")
 
@@ -53,6 +49,7 @@ func main() {
 			log.Fatal().Msgf("Error running ezDebugTUI example:\n%v", err)
 		}
 	} else {
+		ezLog.New().Build()
 		log.Fatal().Msg("Run with '-example' flag to start the example usage of ezDebugTUI.")
 	}
 }
