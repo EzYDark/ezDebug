@@ -6,9 +6,9 @@ package main
 import (
 	"flag"
 
-	"github.com/ezydark/ezLog"
-	"github.com/ezydark/ezLog/log"
 	"github.com/ezydark/ezdebug/tui"
+	"github.com/ezydark/ezlog"
+	"github.com/ezydark/ezlog/log"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 
 		// Have to reinitialize the global logger with the TUI's Writer
 		// otherwise the UI glitches when redrawing
-		ezLog.New().WithWriter(debugTUI.GetLogWriter()).WithTviewCompat().Build()
+		ezlog.New().WithWriter(debugTUI.GetLogWriter()).WithTviewCompat().Build()
 
 		log.Info().Msg("Starting example of ezDebugTUI usage...")
 
@@ -49,7 +49,7 @@ func main() {
 			log.Fatal().Msgf("Error running ezDebugTUI example:\n%v", err)
 		}
 	} else {
-		ezLog.New().Build()
+		ezlog.New().Build()
 		log.Fatal().Msg("Run with '-example' flag to start the example usage of ezDebugTUI.")
 	}
 }
