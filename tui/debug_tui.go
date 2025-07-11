@@ -3,6 +3,7 @@ package tui
 import (
 	"io"
 
+	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 )
 
@@ -26,6 +27,7 @@ func Init() *DebugTUI {
 	})
 
 	logView.SetBorder(true).SetTitle("Logs")
+	logView.SetBackgroundColor(tcell.ColorDefault)
 
 	return &DebugTUI{
 		Application: app,

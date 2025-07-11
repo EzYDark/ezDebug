@@ -3,10 +3,10 @@ module github.com/ezydark/ezDebugTUI
 go 1.24.2
 
 require (
-	github.com/ezydark/ezLog v0.1.3
+	github.com/ezydark/ezLog v1.0.0
+	github.com/gdamore/tcell v1.4.0
 	github.com/gdamore/tcell/v2 v2.8.1
 	github.com/rivo/tview v0.0.0-20250625164341-a4a78f1e05cb
-	github.com/rs/zerolog v1.34.0
 )
 
 require (
@@ -17,6 +17,7 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
+	github.com/rs/zerolog v1.34.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect
 	golang.org/x/term v0.32.0 // indirect
 	golang.org/x/text v0.26.0 // indirect

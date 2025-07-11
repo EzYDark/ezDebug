@@ -3,6 +3,7 @@ package tui
 import (
 	"fmt"
 
+	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 )
 
@@ -18,11 +19,20 @@ type UI struct {
 
 // InitUI creates a new UI.
 func InitUI(app *DebugTUI) *UI {
+	table := tview.NewTable().SetSelectable(true, false)
+	table.SetBackgroundColor(tcell.ColorDefault)
+
+	infoBar := tview.NewTextView().SetDynamicColors(true)
+	infoBar.SetBackgroundColor(tcell.ColorDefault)
+
+	rootFlex := tview.NewFlex().SetDirection(tview.FlexRow)
+	rootFlex.SetBackgroundColor(tcell.ColorDefault)
+
 	return &UI{
 		app:      app,
-		table:    tview.NewTable().SetSelectable(true, false),
-		infoBar:  tview.NewTextView().SetDynamicColors(true),
-		rootFlex: tview.NewFlex().SetDirection(tview.FlexRow),
+		table:    table,
+		infoBar:  infoBar,
+		rootFlex: rootFlex,
 		features: GetFeatureList(),
 	}
 }
@@ -62,7 +72,7 @@ func (ui *UI) populateTable() {
 	ui.table.Clear()
 	for i, feature := range *ui.features {
 		ui.table.SetCell(i, 0,
-			tview.NewTableCell(fmt.Sprintf("[yellow](%d)[-]", i+1)).
+			tview.NewTableCell(fmt.Sprintf("[grey](%d)[-]", i+1)).
 				SetAlign(tview.AlignCenter))
 		checkbox := "[ ]"
 		if feature.Enabled {
@@ -75,7 +85,7 @@ func (ui *UI) populateTable() {
 			tview.NewTableCell(feature.Name).
 				SetExpansion(1))
 	}
-	ui.table.SetCell(len(*ui.features), 0, tview.NewTableCell("[yellow](q)[-]").
+	ui.table.SetCell(len(*ui.features), 0, tview.NewTableCell("[grey](q)[-]").
 		SetAlign(tview.AlignCenter))
 	ui.table.SetCell(len(*ui.features), 1, tview.NewTableCell(""))
 	ui.table.SetCell(len(*ui.features), 2, tview.NewTableCell("Quit"))
