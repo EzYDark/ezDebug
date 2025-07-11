@@ -50,7 +50,8 @@ func (ui *UI) setEventHandlers() {
 	})
 
 	ui.table.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Key() == tcell.KeyEnter {
+		// Toggle feature with Enter or Space
+		if event.Key() == tcell.KeyEnter || event.Rune() == ' ' {
 			row, _ := ui.table.GetSelection()
 			if row >= 0 && row < len(*ui.features) {
 				featureIndex := row
@@ -64,6 +65,36 @@ func (ui *UI) setEventHandlers() {
 			}
 			return nil
 		}
-		return event
+
+		row, col := ui.table.GetSelection()
+		// WASD navigation
+		switch event.Rune() {
+		case 'w':
+			row--
+		case 's':
+			row++
+		case 'a':
+			col--
+		case 'd':
+			col++
+		default:
+			return event // Pass other keys to the default handler
+		}
+
+		// Boundary checks and selection
+		rowCount := ui.table.GetRowCount()
+		if row < 0 {
+			row = 0
+		} else if row >= rowCount {
+			row = rowCount - 1
+		}
+		columnCount := ui.table.GetColumnCount()
+		if col < 0 {
+			col = 0
+		} else if col >= columnCount {
+			col = columnCount - 1
+		}
+		ui.table.Select(row, col)
+		return nil
 	})
 }
