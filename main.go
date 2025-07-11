@@ -6,9 +6,9 @@ package main
 import (
 	"flag"
 
-	"github.com/ezydark/ezDebugTUI/tui"
 	"github.com/ezydark/ezLog"
 	"github.com/ezydark/ezLog/log"
+	"github.com/ezydark/ezdebug/tui"
 )
 
 func main() {

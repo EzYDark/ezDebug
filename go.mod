@@ -1,10 +1,9 @@
-module github.com/ezydark/ezDebugTUI
+module github.com/ezydark/ezdebug
 
 go 1.24.2
 
 require (
 	github.com/ezydark/ezLog v1.0.0
-	github.com/gdamore/tcell v1.4.0
 	github.com/gdamore/tcell/v2 v2.8.1
 	github.com/rivo/tview v0.0.0-20250625164341-a4a78f1e05cb
 )
