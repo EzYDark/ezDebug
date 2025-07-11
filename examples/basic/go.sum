@@ -1,6 +1,4 @@
 github.com/coreos/go-systemd/v22 v22.5.0/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
-github.com/ezydark/ezdebug v0.0.0-20250711211010-ed23a07ad602 h1:nJpWNhGWSP5DaLdh4y40gf/lkGeXxbmErEc0VNGamfE=
-github.com/ezydark/ezdebug v0.0.0-20250711211010-ed23a07ad602/go.mod h1:ms0eYGVYUHobjBJjXP/InbOhTdOynOBuuUIFUuT8pRM=
 github.com/ezydark/ezlog v1.0.3 h1:Yd1EvTwZC7WNvTS6pIE8rimrCX/JW1qIIroUAB8ylKU=
 github.com/ezydark/ezlog v1.0.3/go.mod h1:1Iwh4TnHdaoP8ijSvOjffqyOEsqGt8GE9aesNZxYgb8=
 github.com/fatih/color v1.18.0 h1:S8gINlzdQ840/4pfAwic/ZE0djQEH3wM94VfqLTZcOM=

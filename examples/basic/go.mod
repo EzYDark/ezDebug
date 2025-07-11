@@ -1,9 +1,11 @@
-module github.com/ezydark/ezdebug/example/basic
+module example_basic
 
 go 1.24.5
 
+replace github.com/ezydark/ezdebug => ../../
+
 require (
-	github.com/ezydark/ezdebug v0.0.0-20250711211010-ed23a07ad602
+	github.com/ezydark/ezdebug v0.0.0-00010101000000-000000000000
 	github.com/ezydark/ezlog v1.0.3
 )
 
