@@ -2,10 +2,28 @@ package tui
 
 // Feature defines a toggleable feature with its state and action.
 type Feature struct {
-	Name        string
-	Description string
-	Enabled     bool
-	Action      func(enabled bool)
+	Name           string
+	Description    string
+	StartOnStartup bool
+	Enabled        bool
+
+	// OnStart enables the feature and runs its logic.
+	OnStart func(self *Feature)
+	// OnStop disables the feature and runs its cleanup.
+	OnStop func(self *Feature)
+}
+
+// Toggle flips the feature's state by calling OnStart or OnStop.
+func (f *Feature) Toggle() {
+	if f.Enabled {
+		if f.OnStop != nil {
+			f.OnStop(f)
+		}
+	} else {
+		if f.OnStart != nil {
+			f.OnStart(f)
+		}
+	}
 }
 
 type FeatureList []Feature

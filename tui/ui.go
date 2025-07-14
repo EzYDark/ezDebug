@@ -42,6 +42,16 @@ func (ui *UI) Run() error {
 	ui.table.SetBorder(true).SetTitle("Features")
 	ui.infoBar.SetBorder(true).SetTitle("Info")
 
+	// Check and start features with StartOnStartup
+	for i := range *ui.features {
+		feature := &(*ui.features)[i]
+		if feature.StartOnStartup {
+			if feature.OnStart != nil {
+				feature.OnStart(feature)
+			}
+		}
+	}
+
 	ui.populateTable()
 	ui.updateLayout()
 	ui.setEventHandlers()

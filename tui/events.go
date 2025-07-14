@@ -30,13 +30,22 @@ func (ui *UI) setEventHandlers() {
 				featureIndex = 1
 			case '3', 'š':
 				featureIndex = 2
+			case '4', 'č':
+				featureIndex = 3
+			case '5', 'ř':
+				featureIndex = 4
+			case '6', 'ž':
+				featureIndex = 5
+			case '7', 'ý':
+				featureIndex = 6
+			case '8', 'á':
+				featureIndex = 7
+			case '9', 'í':
+				featureIndex = 8
 			}
 
-			if featureIndex != -1 {
-				(*ui.features)[featureIndex].Enabled = !(*ui.features)[featureIndex].Enabled
-				if (*ui.features)[featureIndex].Action != nil {
-					(*ui.features)[featureIndex].Action((*ui.features)[featureIndex].Enabled)
-				}
+			if featureIndex != -1 && featureIndex < len(*ui.features) {
+				(*ui.features)[featureIndex].Toggle()
 				ui.populateTable()
 				return nil
 			}
@@ -54,11 +63,7 @@ func (ui *UI) setEventHandlers() {
 		if event.Key() == tcell.KeyEnter || event.Rune() == ' ' {
 			row, _ := ui.table.GetSelection()
 			if row >= 0 && row < len(*ui.features) {
-				featureIndex := row
-				(*ui.features)[featureIndex].Enabled = !(*ui.features)[featureIndex].Enabled
-				if (*ui.features)[featureIndex].Action != nil {
-					(*ui.features)[featureIndex].Action((*ui.features)[featureIndex].Enabled)
-				}
+				(*ui.features)[row].Toggle()
 				ui.populateTable()
 			} else if row == len(*ui.features) {
 				ui.app.Stop()

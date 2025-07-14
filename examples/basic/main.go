@@ -26,19 +26,29 @@ func main() {
 
 		features := []tui.Feature{
 			{
-				Name:        "Feature 1",
-				Description: "Description of feature 1",
-				Enabled:     false,
-				Action: func(enabled bool) {
-					log.Info().Msgf("Feature 1 is %v", enabled)
+				Name:           "Feature 1",
+				Description:    "Description of feature 1",
+				StartOnStartup: true,
+				OnStart: func(self *tui.Feature) {
+					self.Enabled = true
+					log.Info().Msgf("Feature 1 is enabled")
+				},
+				OnStop: func(self *tui.Feature) {
+					self.Enabled = false
+					log.Info().Msgf("Feature 1 is disabled")
 				},
 			},
 			{
-				Name:        "Feature 2",
-				Description: "Description of feature 2",
-				Enabled:     false,
-				Action: func(enabled bool) {
-					log.Info().Msgf("Feature 2 is %v", enabled)
+				Name:           "Feature 2",
+				Description:    "Description of feature 2",
+				StartOnStartup: false,
+				OnStart: func(self *tui.Feature) {
+					self.Enabled = true
+					log.Info().Msgf("Feature 2 is enabled")
+				},
+				OnStop: func(self *tui.Feature) {
+					self.Enabled = false
+					log.Info().Msgf("Feature 2 is disabled")
 				},
 			},
 		}
